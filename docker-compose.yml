@@ -1,0 +1,21 @@
+version: "3.6"
+services:
+   db:
+    image: mysql:8.0
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    environment:
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_DATABASE=konoha
+    volumes:
+      - db:/var/lib/mysql
+      - ./db/init.sql:/docker-entrypoint-initdb.d/init.sql
+   javagame:
+    build: .       
+    restart: always
+    volumes:
+      - ./target/JavaCBJS.war:/usr/local/tomcat/webapps/JavaCBJS.war
+    ports:
+      - '5555:8080'
+volumes:
+  db:
+    driver: local
