@@ -5,4 +5,4 @@ docker-compose up --build
 
 ### CTF Challenge
 
-Goal: RCE this website
+Goal: RCE this website and find XSS.
